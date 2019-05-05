@@ -10,7 +10,7 @@ public class ColorRotate : MonoBehaviour
     public int []positions;
     public int currPos;
 
-    public GameObject colorWheel;
+    public GameObject playerBody;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class ColorRotate : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-        colorWheel = GameObject.FindGameObjectWithTag("Wheel");
+        playerBody = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -38,23 +38,23 @@ public class ColorRotate : MonoBehaviour
         if (currPos == 0)
         {
             rend.material.color = Color.red;
-            colorWheel.transform.rotation = Quaternion.Euler(0, 0, 0);
+            
         }
         if (currPos == 1)
         {
             rend.material.color = Color.blue;
-            colorWheel.transform.rotation = Quaternion.Euler(0, 0, -90);
+            
 
         }
         if (currPos == 2)
         {
             rend.material.color = Color.yellow;
-            colorWheel.transform.rotation = Quaternion.Euler(0, 0, -180);
+            
         }
         if (currPos == 3)
         {
             rend.material.color = Color.green;
-            colorWheel.transform.rotation = Quaternion.Euler(0, 0, -270);
+            
         }
 
         if (Input.GetMouseButtonDown(0))

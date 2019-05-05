@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ColorCheck : MonoBehaviour
 {
 
+    public Color myColor;
+
     public float playerHealth;
     public Slider healthBar;
 
@@ -52,6 +54,8 @@ public class ColorCheck : MonoBehaviour
         playerHitParticles.SetActive(false);
 
         
+
+        
         
     }
 
@@ -59,7 +63,19 @@ public class ColorCheck : MonoBehaviour
     void Update()
     {
 
-        healthBar.value = playerHealth / 30;
+        scoreText.text = "Score:  " + score;
+        healthText.text = "Health: " + playerHealth;
+
+        cube = GameObject.FindGameObjectWithTag("Cube");
+        cubeRend = cube.GetComponent<MeshRenderer>();
+
+        myColor = myRend.material.color;
+
+       
+
+        scoreHolder = cube.GetComponent<Score>();
+
+        // healthBar.value = playerHealth / 30;
         if (enableDestroyParticles)
         {
             destroyTimer += Time.deltaTime;
@@ -85,11 +101,8 @@ public class ColorCheck : MonoBehaviour
         }
 
 
-        scoreText.text = "Score:  " + score;
-        healthText.text = "Health: " + playerHealth;
-        cube = GameObject.FindGameObjectWithTag("Cube");
-        scoreHolder = cube.GetComponent<Score>();
-        cubeRend = cube.GetComponent<MeshRenderer>();
+        
+        
 
 
 
@@ -110,20 +123,24 @@ public class ColorCheck : MonoBehaviour
     {
         if(colorsMatch == true)
         {
+            enableDestroyParticles = true;
+            destroyParticles.SetActive(true);
+            destroyParticles.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -8);
+
+            audio1.Play();
+
+            
             Destroy(collision.gameObject);
+
             score += scoreHolder.score;
             if (playerHealth <= 25)
             {
                 playerHealth += scoreHolder.healthToGive;
             }
 
-            enableDestroyParticles = true;
-
-            destroyParticles.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -8);
-           
-            audio1.Play();
             
-            destroyParticles.SetActive(true);
+
+            
 
 
         }
@@ -139,7 +156,6 @@ public class ColorCheck : MonoBehaviour
 
             playerHealth -= 5;
             
-            shouldShake = true;
 
         }
 
