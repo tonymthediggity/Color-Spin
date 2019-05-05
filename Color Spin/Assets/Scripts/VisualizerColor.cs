@@ -31,9 +31,13 @@ public class VisualizerColor : MonoBehaviour
     {
         currentCube = GameObject.FindGameObjectsWithTag("Cube");
 
-        
 
-        targetColor = currentCube[0].GetComponent<MeshRenderer>().material.color;
+        if (currentCube.Length != 0)
+        {
+
+
+            targetColor = currentCube[0].GetComponent<MeshRenderer>().material.color;
+        }
 
         foreach (Image visImages in GetComponentsInChildren<Image>())
         {

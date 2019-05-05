@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Cube
   - Wheel
+  - CannonBall
+  - Cannon
+  - FirePoint
   layers:
   - Default
   - TransparentFX

@@ -314,11 +314,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7098307219977441071}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b39d21153587204dab1b370c998e65a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
+  healthToGive: 0
+  yPos: 0
+  yPosDZ: 0
+  distanceFromDZ: 0
+  destroyZone: {fileID: 0}
 --- !u!1001 &8316854100598787416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -326,11 +332,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1290605045924594295, guid: eaa0ec709e4fb404fba17eec20b28a1a,
-        type: 3}
-      propertyPath: m_Name
-      value: FinalCube
-      objectReference: {fileID: 0}
     - target: {fileID: 1290605045924594299, guid: eaa0ec709e4fb404fba17eec20b28a1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -385,6 +386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1290605045924594295, guid: eaa0ec709e4fb404fba17eec20b28a1a,
+        type: 3}
+      propertyPath: m_Name
+      value: FinalCube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaa0ec709e4fb404fba17eec20b28a1a, type: 3}

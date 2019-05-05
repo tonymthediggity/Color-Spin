@@ -21,7 +21,9 @@ public class ColorCheck : MonoBehaviour
     public AudioSource audio1;
     public AudioSource audio2;
 
-    public GameObject cube;
+    public GameObject[] cubes;
+    public GameObject currentCube;
+    public GameObject colorManager;
     public MeshRenderer cubeRend;
 
     public Text scoreText;
@@ -42,10 +44,11 @@ public class ColorCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
         healthBar = GetComponentInChildren<Slider>();
         gameOverPanel.SetActive(false);
         myRend = GetComponent<MeshRenderer>();
+        myRend.material.color = colorManager.GetComponent<ColorManager>().currColor;
 
         destroyParticles = GameObject.Find("Destroy Particles");
         destroyParticles.SetActive(false);
@@ -65,15 +68,34 @@ public class ColorCheck : MonoBehaviour
 
         scoreText.text = "Score:  " + score;
         healthText.text = "Health: " + playerHealth;
+        cubes = GameObject.FindGameObjectsWithTag("CannonBall");
+        myRend.material.color = colorManager.GetComponent<ColorManager>().currColor;
 
-        cube = GameObject.FindGameObjectWithTag("Cube");
-        cubeRend = cube.GetComponent<MeshRenderer>();
+
+        if (cubes.Length != 0)
+        {
+            
+
+            currentCube = cubes[0];
+            cubeRend = currentCube.GetComponent<MeshRenderer>();
+            scoreHolder = currentCube.GetComponent<Score>();
+            myRend.material.color = cubeRend.material.color;
+
+            if (myRend.material.color == cubeRend.material.color)
+            {
+                colorsMatch = true;
+            }
+            else
+            {
+                colorsMatch = false;
+            }
+        }
 
         myColor = myRend.material.color;
 
        
 
-        scoreHolder = cube.GetComponent<Score>();
+        
 
         // healthBar.value = playerHealth / 30;
         if (enableDestroyParticles)
@@ -106,14 +128,7 @@ public class ColorCheck : MonoBehaviour
 
 
 
-        if(myRend.material.color == cubeRend.material.color)
-        {
-            colorsMatch = true;
-        }
-        else
-        {
-            colorsMatch = false;
-        }
+        
 
 
         
@@ -133,10 +148,7 @@ public class ColorCheck : MonoBehaviour
             Destroy(collision.gameObject);
 
             score += scoreHolder.score;
-            if (playerHealth <= 25)
-            {
-                playerHealth += scoreHolder.healthToGive;
-            }
+
 
             
 
