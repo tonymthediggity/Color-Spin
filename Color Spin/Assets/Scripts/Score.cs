@@ -6,7 +6,7 @@ public class Score : MonoBehaviour
 {
 
     public int score;
-    public CannonBallVel ballVelScript;
+    public PlayerCannonBall pcbScore;
 
 
 
@@ -14,16 +14,16 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ballVelScript = GetComponent<CannonBallVel>();
+        pcbScore = GameObject.Find("PlayerCannonBall").GetComponent<PlayerCannonBall>();
         destroyZone = GameObject.Find("DestroyZone");
     }
 
     // Update is called once per frame
     void Update()
     {
-       
 
-        score = Mathf.RoundToInt(ballVelScript.myVel / 10); 
+
+        score += pcbScore.score;
 
 
 

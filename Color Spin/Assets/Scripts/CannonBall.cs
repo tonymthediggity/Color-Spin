@@ -13,9 +13,12 @@ public class CannonBall : MonoBehaviour
     public GameObject currentFP;
     public GameObject cannonBallPrefab;
     public float cannonBallVel;
+
+    public float timeToActivate;
     // Start is called before the first frame update
     void Start()
     {
+        timeToActivate = 0;
         firePoints = GameObject.FindGameObjectsWithTag("FirePoint");
 
         //firePointPos = GetComponent<Transform>().transform.Find("FirePoint");
@@ -25,27 +28,22 @@ public class CannonBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timeToActivate += Time.deltaTime;
 
-            if(firePoints.Length != 1)
-            {
-                index = Random.Range(0, firePoints.Length);
-                currentFP = firePoints[index];
-                firePointPos = currentFP.GetComponent<Transform>();
-
-            }
-            
-            if(firePoints.Length == 1)
-            {
-                firePointPos = GameObject.FindGameObjectWithTag("FirePoint").transform;
-            }
+ 
+           
             
 
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (timeToActivate >=   Random.Range(.75f, 1.32f))
         {
+            index = Random.Range(0, firePoints.Length);
+            currentFP = firePoints[index];
+            firePointPos = currentFP.transform;
+
             Instantiate(cannonBallPrefab, firePointPos.transform.position, firePointPos.transform.rotation);
+            timeToActivate = 0;
         } 
         
     }

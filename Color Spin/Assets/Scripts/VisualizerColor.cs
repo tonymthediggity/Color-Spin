@@ -7,9 +7,9 @@ public class VisualizerColor : MonoBehaviour
 {
     public Image[] myVisualizers;
 
-    public GameObject[] currentCube;
+    public ColorManager colorChanger;
 
-    public Color targetColor;
+   
 
 
 
@@ -19,8 +19,8 @@ public class VisualizerColor : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       // myVisualizers = GetComponentsInChildren<Image>();
-       
+        // myVisualizers = GetComponentsInChildren<Image>();
+        colorChanger = GameObject.Find("ColorManager").GetComponent<ColorManager>();
 
         //myColor = .color;
         //myText = GetComponent<Text>();
@@ -29,20 +29,18 @@ public class VisualizerColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentCube = GameObject.FindGameObjectsWithTag("Cube");
+      
 
 
-        if (currentCube.Length != 0)
-        {
+        
 
 
-            targetColor = currentCube[0].GetComponent<MeshRenderer>().material.color;
-        }
+            
 
         foreach (Image visImages in GetComponentsInChildren<Image>())
         {
             
-            visImages.color = Color.Lerp(targetColor, visImages.color, Mathf.PingPong(Time.time, 1.15f));
+            visImages.color = Color.Lerp(colorChanger.currColor, visImages.color, Mathf.PingPong(Time.time, 1.15f));
             var tempColor = visImages.color;
             tempColor.a = .50f;
             visImages.color = tempColor;

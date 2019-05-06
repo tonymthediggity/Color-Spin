@@ -8,11 +8,12 @@ public class ColorManager : MonoBehaviour
     public Color currColor;
     public float colorChangeTimer;
 
+
     // Start is called before the first frame update
     void Awake()
     {
-        
 
+        
 
 
 
@@ -52,6 +53,9 @@ public class ColorManager : MonoBehaviour
         {
             currColor = Color.green;
         }
+        
+
+        
 
         
 

@@ -9,6 +9,7 @@ TagManager:
   - CannonBall
   - Cannon
   - FirePoint
+  - Visualizer
   layers:
   - Default
   - TransparentFX

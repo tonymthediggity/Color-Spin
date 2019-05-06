@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8765927376480599681}
   - component: {fileID: 8765927376480599680}
   - component: {fileID: 8765927376480599740}
-  - component: {fileID: 698223505267725019}
   - component: {fileID: -19863750544680914}
+  - component: {fileID: 7052778185463802554}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: CannonBall
@@ -108,9 +108,24 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &698223505267725019
+--- !u!114 &-19863750544680914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765927376480599682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b39d21153587204dab1b370c998e65a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  ballVelScript: {fileID: 0}
+  destroyZone: {fileID: 0}
+--- !u!114 &7052778185463802554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,24 +142,11 @@ MonoBehaviour:
   colorManager: {fileID: 0}
   myVel: 0
   myCol: {fileID: 0}
-  firePoint: {fileID: 0}
+  firePoints: []
+  index: 0
+  currFP: {fileID: 0}
   firePointPos: {fileID: 0}
   firePointForward: {x: 0, y: 0, z: 0}
---- !u!114 &-19863750544680914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8765927376480599682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b39d21153587204dab1b370c998e65a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  healthToGive: 0
-  yPos: 0
-  yPosDZ: 0
-  distanceFromDZ: 0
-  destroyZone: {fileID: 0}
+  cannonBallScript: {fileID: 0}
+  myFirePoint: {fileID: 0}
+  bounceCounter: 0

@@ -35,7 +35,7 @@ public class ColorCheck : MonoBehaviour
     public GameObject gameOverPanel;
 
     public int score = 0;
-    public Score scoreHolder;
+    public GameObject scoreHolder;
 
     public bool colorsMatch = false;
 
@@ -78,7 +78,7 @@ public class ColorCheck : MonoBehaviour
 
             currentCube = cubes[0];
             cubeRend = currentCube.GetComponent<MeshRenderer>();
-            scoreHolder = currentCube.GetComponent<Score>();
+            scoreHolder = GameObject.Find("PlayerCannonBall");
             myRend.material.color = cubeRend.material.color;
 
             if (myRend.material.color == cubeRend.material.color)
@@ -147,7 +147,7 @@ public class ColorCheck : MonoBehaviour
             
             Destroy(collision.gameObject);
 
-            score += scoreHolder.score;
+            score += scoreHolder.GetComponent<PlayerCannonBall>().score;
 
 
             
@@ -169,7 +169,7 @@ public class ColorCheck : MonoBehaviour
             playerHealth -= 5;
             
 
-        }
+        } 
 
 
     }
