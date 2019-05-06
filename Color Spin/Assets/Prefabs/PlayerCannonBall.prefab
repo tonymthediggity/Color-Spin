@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -2139023618843176284}
   m_Layer: 0
   m_Name: PlayerCannonBall
-  m_TagString: Untagged
+  m_TagString: PlayerCannonBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c588513bb03ef488210550081ad132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  despawnTimer: 0
+  despawnTimerActive: 0
+  destroyParticles: {fileID: 0}
+  cannonBall: {fileID: 0}
+  score: 0
 --- !u!1 &8857125876858166053
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,10 @@ using UnityEngine;
 public class CannonBall : MonoBehaviour
 {
 
-    //FIX ME FIRST
+    public int maxAmount;
+    public int currAmount;
+    public GameObject[] cannonBalls;
+    public bool dontSpawn = false;
 
     public GameObject[] firePoints;
     public Transform firePointPos;
@@ -29,6 +32,23 @@ public class CannonBall : MonoBehaviour
     void Update()
     {
         timeToActivate += Time.deltaTime;
+        cannonBalls = GameObject.FindGameObjectsWithTag("CannonBall");
+        currAmount = cannonBalls.Length;
+
+       if( currAmount >= maxAmount)
+        {
+            dontSpawn = true;
+        }
+
+        if (dontSpawn)
+        {
+            for (int i = 0; i < cannonBalls.Length; i++)
+            {
+                GameObject balls = cannonBalls[i];
+                balls.GetComponent<Rigidbody>().isKinematic = true;
+            }
+        }
+
 
  
            
@@ -36,7 +56,7 @@ public class CannonBall : MonoBehaviour
 
 
 
-        if (timeToActivate >=   Random.Range(.75f, 1.32f))
+        if (timeToActivate >=   Random.Range(.75f, 1.32f) && currAmount <= maxAmount && dontSpawn == false )
         {
             index = Random.Range(0, firePoints.Length);
             currentFP = firePoints[index];

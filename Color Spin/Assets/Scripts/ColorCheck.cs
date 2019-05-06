@@ -15,8 +15,7 @@ public class ColorCheck : MonoBehaviour
 
     public float destroyTimer;
     public float playerHitTimer;
-    public bool enableDestroyParticles = false;
-    public bool enablePlayerHitParticles = false;
+
 
     public AudioSource audio1;
     public AudioSource audio2;
@@ -29,8 +28,6 @@ public class ColorCheck : MonoBehaviour
     public Text scoreText;
     public Text healthText;
 
-    public GameObject destroyParticles;
-    public GameObject playerHitParticles;
 
     public GameObject gameOverPanel;
 
@@ -50,11 +47,7 @@ public class ColorCheck : MonoBehaviour
         myRend = GetComponent<MeshRenderer>();
         myRend.material.color = colorManager.GetComponent<ColorManager>().currColor;
 
-        destroyParticles = GameObject.Find("Destroy Particles");
-        destroyParticles.SetActive(false);
 
-        playerHitParticles = GameObject.Find("PlayerHitParticles");
-        playerHitParticles.SetActive(false);
 
         
 
@@ -66,8 +59,7 @@ public class ColorCheck : MonoBehaviour
     void Update()
     {
 
-        scoreText.text = "Score:  " + score;
-        healthText.text = "Health: " + playerHealth;
+        
         cubes = GameObject.FindGameObjectsWithTag("CannonBall");
         myRend.material.color = colorManager.GetComponent<ColorManager>().currColor;
 
@@ -98,27 +90,17 @@ public class ColorCheck : MonoBehaviour
         
 
         // healthBar.value = playerHealth / 30;
-        if (enableDestroyParticles)
-        {
-            destroyTimer += Time.deltaTime;
-        }
-
-        if (enablePlayerHitParticles)
-        {
-            playerHitTimer += Time.deltaTime;
-        }
+       
 
         if (destroyTimer > 1)
         {
-            destroyParticles.SetActive(false);
-            enableDestroyParticles = false;
+            
             destroyTimer = 0;
         }
 
         if(playerHitTimer > 1)
         {
-            playerHitParticles.SetActive(false);
-            enablePlayerHitParticles = false;
+            
             playerHitTimer = 0;
         }
 
@@ -138,10 +120,7 @@ public class ColorCheck : MonoBehaviour
     {
         if(colorsMatch == true)
         {
-            enableDestroyParticles = true;
-            destroyParticles.SetActive(true);
-            destroyParticles.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -8);
-
+           
             audio1.Play();
 
             
@@ -160,9 +139,7 @@ public class ColorCheck : MonoBehaviour
         {
             audio2.Play();
 
-            enablePlayerHitParticles = true;
-            playerHitParticles.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -8);
-            playerHitParticles.SetActive(true);
+
             Destroy(collision.gameObject);
             
 

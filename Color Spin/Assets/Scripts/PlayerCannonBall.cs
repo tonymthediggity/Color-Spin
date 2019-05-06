@@ -40,7 +40,7 @@ public class PlayerCannonBall : MonoBehaviour
         {
             Destroy(other.gameObject);
             despawnTimerActive = true;
-            score += cannonBall.score;
+
             
         }
     }

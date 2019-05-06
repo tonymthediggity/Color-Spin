@@ -29,7 +29,7 @@ public class Destroy : MonoBehaviour
         playerHitSound.Play();
         
 
-        player.GetComponent<ColorCheck>().enablePlayerHitParticles = true;
+
 
         
         playerHitParticles.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -8);

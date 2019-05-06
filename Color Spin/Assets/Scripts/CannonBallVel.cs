@@ -6,6 +6,7 @@ public class CannonBallVel : MonoBehaviour
 {
 
 
+
     public Rigidbody myBody;
     public MeshRenderer myRend;
     public GameObject colorManager;
@@ -17,16 +18,21 @@ public class CannonBallVel : MonoBehaviour
     public Transform firePointPos;
     public Vector3 firePointForward;
 
- 
+    public ParticleSystem myParticle;
 
+
+    public GameObject ScoreManager;
     public CannonBall cannonBallScript;
     public GameObject myFirePoint;
     public int bounceCounter;
     public int score;
+    public int scoreToAdd;
 
     // Start is called before the first frame update
     void Awake()
     {
+
+        ScoreManager = GameObject.Find("GameManager");
         bounceCounter = 1;
         score = 5;
         cannonBallScript = GameObject.FindObjectOfType<CannonBall>();
@@ -68,12 +74,25 @@ public class CannonBallVel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score += bounceCounter;
+        scoreToAdd = GameObject.Find("GameManager").GetComponent<ScoreAndTimer>().scoreToGive;
         myRend.material.color = colorManager.GetComponent<ColorManager>().currColor;
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision other)
     {
-        bounceCounter++;
+        if (other.collider.CompareTag("PlayerCannonBall"))
+        {
+            score += scoreToAdd;
+            ScoreManager.GetComponent<ScoreAndTimer>().currScore += (scoreToAdd / 10);
+            Instantiate(myParticle, other.transform.position, other.transform.rotation);
+
+           
+           
+        }
+        if (!other.collider.CompareTag("PlayerCannonBall"))
+        {
+
+        }
     }
 }

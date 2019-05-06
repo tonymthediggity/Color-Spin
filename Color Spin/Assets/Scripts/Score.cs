@@ -6,7 +6,7 @@ public class Score : MonoBehaviour
 {
 
     public int score;
-    public PlayerCannonBall pcbScore;
+    public GameObject scoreHolder;
 
 
 
@@ -14,8 +14,8 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        pcbScore = GameObject.Find("PlayerCannonBall").GetComponent<PlayerCannonBall>();
-        destroyZone = GameObject.Find("DestroyZone");
+        scoreHolder = GameObject.Find("GameManager");
+
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class Score : MonoBehaviour
     {
 
 
-        score += pcbScore.score;
+        score += scoreHolder.GetComponent<ScoreAndTimer>().scoreToGive;
 
 
 

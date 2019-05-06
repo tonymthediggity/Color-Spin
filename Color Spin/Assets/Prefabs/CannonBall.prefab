@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8765927376480599681}
   - component: {fileID: 8765927376480599680}
   - component: {fileID: 8765927376480599740}
-  - component: {fileID: -19863750544680914}
   - component: {fileID: 7052778185463802554}
   m_Layer: 0
   m_Name: CannonBall
@@ -110,21 +109,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!114 &-19863750544680914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8765927376480599682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b39d21153587204dab1b370c998e65a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  ballVelScript: {fileID: 0}
-  destroyZone: {fileID: 0}
 --- !u!114 &7052778185463802554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +131,11 @@ MonoBehaviour:
   currFP: {fileID: 0}
   firePointPos: {fileID: 0}
   firePointForward: {x: 0, y: 0, z: 0}
+  myParticle: {fileID: 3853305377915481687, guid: a4da5bcb53a507f4489fb797e3e8ac7d,
+    type: 3}
+  ScoreManager: {fileID: 0}
   cannonBallScript: {fileID: 0}
   myFirePoint: {fileID: 0}
   bounceCounter: 0
+  score: 0
+  scoreToAdd: 0

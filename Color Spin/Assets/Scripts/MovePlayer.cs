@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class MovePlayer : MonoBehaviour
     public bool isAiming;
     public int aimSensitivity;
     public GameObject myCannonBallPrefab;
-
+    public int numberOfShots;
+    public Text shotText;
     public bool canFire;
     public float timeTilFireAgain;
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
         canFire = true;
         isAiming = false;
         bodyCol = GetComponentInChildren<SphereCollider>();
@@ -26,6 +30,8 @@ public class MovePlayer : MonoBehaviour
     }
     void Update()
     {
+
+        shotText.text = "Shots " + numberOfShots;
         myFpPos = myFP.transform.position;
         if (!isAiming)
         {
@@ -41,6 +47,7 @@ public class MovePlayer : MonoBehaviour
         {
             isAiming = true;
             transform.Rotate(0, 0, Input.GetAxis("Mouse X") * aimSensitivity);
+            
 
             
 
@@ -53,7 +60,8 @@ public class MovePlayer : MonoBehaviour
         if (Input.GetMouseButtonUp(1) && canFire)
         {
             Shoot();
-            
+            numberOfShots++;
+
         }
 
         if(canFire == false)
@@ -87,7 +95,8 @@ public class MovePlayer : MonoBehaviour
     {
         canFire = false;
         GameObject obj = (GameObject)Instantiate(myCannonBallPrefab, myFpPos, myFP.transform.rotation);
-        obj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 100;
+        obj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 300;
+        
         
     }
 }

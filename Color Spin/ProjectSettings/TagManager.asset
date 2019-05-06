@@ -10,6 +10,7 @@ TagManager:
   - Cannon
   - FirePoint
   - Visualizer
+  - PlayerCannonBall
   layers:
   - Default
   - TransparentFX
