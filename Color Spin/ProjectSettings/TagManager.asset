@@ -11,6 +11,10 @@ TagManager:
   - FirePoint
   - Visualizer
   - PlayerCannonBall
+  - Audio
+  - VisualizerUI
+  - LevelLoader
+  - ColorManager
   layers:
   - Default
   - TransparentFX

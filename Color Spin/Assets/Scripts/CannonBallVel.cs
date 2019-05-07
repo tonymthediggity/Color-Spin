@@ -6,7 +6,7 @@ public class CannonBallVel : MonoBehaviour
 {
 
 
-
+    public AudioSource bounceSound;
     public Rigidbody myBody;
     public MeshRenderer myRend;
     public GameObject colorManager;
@@ -31,7 +31,7 @@ public class CannonBallVel : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
+        bounceSound = GetComponent<AudioSource>();
         ScoreManager = GameObject.Find("GameManager");
         bounceCounter = 1;
         score = 5;
@@ -42,6 +42,8 @@ public class CannonBallVel : MonoBehaviour
         myVel = Random.Range(100, 223);
         myBody = GetComponent<Rigidbody>();
         myCol = GetComponent<SphereCollider>();
+
+        scoreToAdd = 20;
 
       //  myCol.material.bounciness = Random.Range(2, 5);
 
@@ -74,7 +76,7 @@ public class CannonBallVel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreToAdd = GameObject.Find("GameManager").GetComponent<ScoreAndTimer>().scoreToGive;
+        
         myRend.material.color = colorManager.GetComponent<ColorManager>().currColor;
 
     }
@@ -84,7 +86,7 @@ public class CannonBallVel : MonoBehaviour
         if (other.collider.CompareTag("PlayerCannonBall"))
         {
             score += scoreToAdd;
-            ScoreManager.GetComponent<ScoreAndTimer>().currScore += (scoreToAdd / 10);
+            ScoreManager.GetComponent<ScoreAndTimer>().currScore += scoreToAdd;
             Instantiate(myParticle, other.transform.position, other.transform.rotation);
 
            
@@ -92,7 +94,7 @@ public class CannonBallVel : MonoBehaviour
         }
         if (!other.collider.CompareTag("PlayerCannonBall"))
         {
-
+            bounceSound.Play();
         }
     }
 }

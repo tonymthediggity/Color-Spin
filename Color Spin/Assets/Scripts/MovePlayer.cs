@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MovePlayer : MonoBehaviour
 {
-
+    public Vector3 playerPos;
     public SphereCollider bodyCol;
     public GameObject myFP;
     public Vector3 myFpPos;
@@ -27,13 +27,15 @@ public class MovePlayer : MonoBehaviour
         bodyCol = GetComponentInChildren<SphereCollider>();
         bodyCol.enabled = false;
         aimLine = GetComponent<LineRenderer>();
+        playerPos = GameObject.Find("PlayerPos").transform.position;
+        transform.position = playerPos;
     }
     void Update()
     {
 
         shotText.text = "Shots " + numberOfShots;
         myFpPos = myFP.transform.position;
-        if (!isAiming)
+      /*  if (!isAiming)
         {
             var v3 = Input.mousePosition;
 
@@ -41,21 +43,21 @@ public class MovePlayer : MonoBehaviour
             v3.z = 0;
 
             transform.position = v3;
-        }
+        }*/
 
-        if (Input.GetMouseButton(0))
-        {
+      //  if (Input.GetMouseButton(0))
+       // {
             isAiming = true;
-            transform.Rotate(0, 0, Input.GetAxis("Mouse X") * aimSensitivity);
+            transform.Rotate(0, 0, -Input.GetAxis("Mouse X") * aimSensitivity);
             
 
             
 
-        }
-        else
-        {
-            isAiming = false;
-        }
+      //  }
+      //  else
+       // {
+       //     isAiming = false;
+       // }
 
         if (Input.GetMouseButtonUp(1) && canFire)
         {

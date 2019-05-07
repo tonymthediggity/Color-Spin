@@ -13,6 +13,17 @@ public class AudioSpectrum : MonoBehaviour
         m_audioSpectrum = new float[128];
     }
 
+    private void Awake()
+    {
+        GameObject[] audios = GameObject.FindGameObjectsWithTag("Audio");
+
+        if (audios.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     // Update is called once per frame
     void Update()
     {

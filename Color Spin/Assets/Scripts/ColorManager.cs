@@ -13,66 +13,72 @@ public class ColorManager : MonoBehaviour
     void Awake()
     {
 
-        
+        GameObject[] colorManager = GameObject.FindGameObjectsWithTag("ColorManager");
+
+         if (colorManager.Length > 1)
+          {
+              Destroy(this.gameObject);
+          }
+          DontDestroyOnLoad(this.gameObject);
 
 
 
 
 
-    }
+      }
 
-    // Update is called once per frame
-    void Update()
-    {
+      // Update is called once per frame
+      void Update()
+      {
 
-        colorChangeTimer += Time.deltaTime;
-
-        
-
-        if(colorChangeTimer >= 2)
-        {
-            colorPos = Random.Range(0, 4);
-            colorChangeTimer = 0;
-        }
-
-        if(colorPos == 0)
-        {
-            currColor = Color.yellow;
-        }
-        if (colorPos == 1)
-        {
-            currColor = Color.blue;
-        }
-
-        if (colorPos == 2)
-        {
-            currColor = Color.red;
-        }
-
-        if (colorPos == 3)
-        {
-            currColor = Color.green;
-        }
-        
-
-        
-
-        
+          colorChangeTimer += Time.deltaTime;
 
 
-       /* if (colorChangeTimer < 1 && colorChangeTimer > 0)
-        {
-            currColor = Color.red;
-        }
-        if (colorChangeTimer < 3 && colorChangeTimer > 2)
-        {
-            currColor = Color.yellow;
-        }
-        if (colorChangeTimer < 4 && colorChangeTimer > 3)
-        {
-            currColor = Color.green;
-        }
-        */
+
+          if(colorChangeTimer >= 2)
+          {
+              colorPos = Random.Range(0, 4);
+              colorChangeTimer = 0;
+          }
+
+          if(colorPos == 0)
+          {
+              currColor = Color.yellow;
+          }
+          if (colorPos == 1)
+          {
+              currColor = Color.blue;
+          }
+
+          if (colorPos == 2)
+          {
+              currColor = Color.red;
+          }
+
+          if (colorPos == 3)
+          {
+              currColor = Color.green;
+          }
+
+
+
+
+
+
+
+         /* if (colorChangeTimer < 1 && colorChangeTimer > 0)
+          {
+              currColor = Color.red;
+          }
+          if (colorChangeTimer < 3 && colorChangeTimer > 2)
+          {
+              currColor = Color.yellow;
+          }
+          if (colorChangeTimer < 4 && colorChangeTimer > 3)
+          {
+              currColor = Color.green;
+          }
+          */
 
     }
 }

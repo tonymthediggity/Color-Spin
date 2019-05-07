@@ -5,41 +5,33 @@ using UnityEngine.UI;
 
 public class ScoreAndTimer : MonoBehaviour
 {
+    public int par;
+    public GameObject[] cannonBalls;
+
     public int scoreToGive;
-    public AudioSource currSong;
-    public float gameTimer;
     public int currScore;
+    public int finalScore;
 
+    public int score;
     public Text scoreText;
+    public Text parText;
+    public CannonBall cannonBallScript;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-        currSong = GameObject.Find("audio").GetComponent<AudioSource>();
-        gameTimer = currSong.clip.length;
+
+       
+        cannonBallScript = GameObject.Find("CannonWScript").GetComponent<CannonBall>();
+        par = Mathf.RoundToInt(cannonBallScript.maxAmount * 1.5f);
+        
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        parText.text = "Par: " + par;
         scoreText.text = "Score: " + currScore;
-        if(currScore <= 0)
-        {
-            currScore = Random.Range(1, 15);
-        }
-        gameTimer -= Time.deltaTime;
-        scoreToGive = Mathf.RoundToInt(gameTimer);
 
         
-
-        if(gameTimer <= 0)
-        {
-            EndLevel();
-        }
-    }
-
-    public void EndLevel()
-    {
-
     }
 }

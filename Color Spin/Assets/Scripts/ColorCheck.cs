@@ -41,7 +41,7 @@ public class ColorCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        colorManager = GameObject.FindGameObjectWithTag("ColorManager");
         healthBar = GetComponentInChildren<Slider>();
         gameOverPanel.SetActive(false);
         myRend = GetComponent<MeshRenderer>();

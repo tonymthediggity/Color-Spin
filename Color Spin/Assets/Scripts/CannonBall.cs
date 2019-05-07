@@ -34,11 +34,14 @@ public class CannonBall : MonoBehaviour
         timeToActivate += Time.deltaTime;
         cannonBalls = GameObject.FindGameObjectsWithTag("CannonBall");
         currAmount = cannonBalls.Length;
+        
 
        if( currAmount >= maxAmount)
         {
             dontSpawn = true;
         }
+
+       
 
         if (dontSpawn)
         {
