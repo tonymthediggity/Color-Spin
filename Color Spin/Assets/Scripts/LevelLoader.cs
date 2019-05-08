@@ -25,13 +25,10 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(cannonScript.dontSpawn == true && cannonScript.currAmount <= 0)
-        {
-            LoadNextScene();
-        }
+       
     }
 
-    void LoadNextScene()
+    public void LoadNextScene()
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
