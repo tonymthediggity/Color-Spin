@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoadUI : MonoBehaviour
 {
+    public Transform myTrans;
+    public GameObject levelLoadUIprefab;
     public Scene thisScene;
     public Text levelNameText;
     public Text parText;
@@ -17,6 +19,9 @@ public class LevelLoadUI : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
+
+
         thisScene = SceneManager.GetActiveScene();
         levelNameText.text = thisScene.name;
         gameManager = GameObject.Find("GameManager");
@@ -29,6 +34,7 @@ public class LevelLoadUI : MonoBehaviour
     {
         if (isEnabled)
         {
+
             parText.text = "Par " + gameManager.GetComponent<ScoreAndTimer>().par;
         }
 

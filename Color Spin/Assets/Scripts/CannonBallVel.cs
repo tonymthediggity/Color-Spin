@@ -6,7 +6,7 @@ public class CannonBallVel : MonoBehaviour
 {
 
 
-    public AudioSource bounceSound;
+    
     public Rigidbody myBody;
     public MeshRenderer myRend;
     public GameObject colorManager;
@@ -31,7 +31,7 @@ public class CannonBallVel : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        bounceSound = GetComponent<AudioSource>();
+        
         ScoreManager = GameObject.Find("GameManager");
         bounceCounter = 1;
         score = 5;
@@ -94,7 +94,7 @@ public class CannonBallVel : MonoBehaviour
         }
         if (!other.collider.CompareTag("PlayerCannonBall"))
         {
-            bounceSound.Play();
+
         }
     }
 }

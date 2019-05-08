@@ -10,10 +10,12 @@ public class PlayerCannonBall : MonoBehaviour
     public GameObject destroyParticles;
     public CannonBallVel cannonBall;
     public int score;
+    public AudioSource myAudio;
 
     // Start is called before the first frame update
     void Awake()
     {
+        myAudio = GetComponent<AudioSource>();
         despawnTimer = 0;
         
     }
@@ -40,8 +42,13 @@ public class PlayerCannonBall : MonoBehaviour
         {
             Destroy(other.gameObject);
             despawnTimerActive = true;
+            myAudio.Play();
 
             
+        }
+        if (!other.collider.CompareTag("CannonBall"))
+        {
+            myAudio.Play();
         }
     }
 }

@@ -15,6 +15,7 @@ TagManager:
   - VisualizerUI
   - LevelLoader
   - ColorManager
+  - LevelLoadUI
   layers:
   - Default
   - TransparentFX
