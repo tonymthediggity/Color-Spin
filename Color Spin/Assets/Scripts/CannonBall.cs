@@ -59,7 +59,7 @@ public class CannonBall : MonoBehaviour
 
 
 
-        if (timeToActivate >=   Random.Range(.75f, 1.32f) && currAmount <= maxAmount && dontSpawn == false )
+      /*  if (timeToActivate >=   Random.Range(.75f, 1.32f) && currAmount <= maxAmount && dontSpawn == false )
         {
             index = Random.Range(0, firePoints.Length);
             currentFP = firePoints[index];
@@ -67,7 +67,7 @@ public class CannonBall : MonoBehaviour
 
             Instantiate(cannonBallPrefab, firePointPos.transform.position, firePointPos.transform.rotation);
             timeToActivate = 0;
-        } 
+        }*/ 
         
     }
 }

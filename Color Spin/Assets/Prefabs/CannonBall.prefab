@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8765927376480599680}
   - component: {fileID: 8765927376480599740}
   - component: {fileID: 7052778185463802554}
+  - component: {fileID: 9171179289778737779}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: CannonBall
@@ -131,7 +132,7 @@ MonoBehaviour:
   currFP: {fileID: 0}
   firePointPos: {fileID: 0}
   firePointForward: {x: 0, y: 0, z: 0}
-  myParticle: {fileID: 3853305377915481687, guid: a4da5bcb53a507f4489fb797e3e8ac7d,
+  myParticle: {fileID: 1097118222624448287, guid: 6d7af68833f95114f9a72a5c1c56e3ac,
     type: 3}
   ScoreManager: {fileID: 0}
   cannonBallScript: {fileID: 0}
@@ -139,3 +140,15 @@ MonoBehaviour:
   bounceCounter: 0
   score: 0
   scoreToAdd: 0
+--- !u!122 &9171179289778737779
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765927376480599682}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4293132799
+  m_Size: 5

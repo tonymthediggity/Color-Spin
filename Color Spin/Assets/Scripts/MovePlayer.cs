@@ -10,20 +10,18 @@ public class MovePlayer : MonoBehaviour
     public GameObject myFP;
     public Vector3 myFpPos;
     public LineRenderer aimLine;
-    public bool isAiming;
+    public GameObject playerCannonBallClone;
     public int aimSensitivity;
     public GameObject myCannonBallPrefab;
     public int numberOfShots;
     public Text shotText;
-    public bool canFire;
-    public float timeTilFireAgain;
+    
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-        canFire = true;
-        isAiming = false;
+        
         bodyCol = GetComponentInChildren<SphereCollider>();
         bodyCol.enabled = false;
         aimLine = GetComponent<LineRenderer>();
@@ -32,7 +30,7 @@ public class MovePlayer : MonoBehaviour
     }
     void Update()
     {
-
+        playerCannonBallClone = GameObject.Find("PlayerCannonBall(Clone)");
         shotText.text = "Shots " + numberOfShots;
         myFpPos = myFP.transform.position;
       /*  if (!isAiming)
@@ -47,7 +45,7 @@ public class MovePlayer : MonoBehaviour
 
       //  if (Input.GetMouseButton(0))
        // {
-            isAiming = true;
+            
             transform.Rotate(0, 0, -Input.GetAxis("Mouse X") * aimSensitivity);
             
 
@@ -59,23 +57,14 @@ public class MovePlayer : MonoBehaviour
        //     isAiming = false;
        // }
 
-        if (Input.GetMouseButtonUp(1) && canFire)
+        if (Input.GetMouseButtonDown(1) && playerCannonBallClone == null)
         {
             Shoot();
             numberOfShots++;
 
         }
 
-        if(canFire == false)
-        {
-            timeTilFireAgain += Time.deltaTime;
-        }
-
-        if(timeTilFireAgain >= 3)
-        {
-            canFire = true;
-            timeTilFireAgain = 0;
-        }
+        
 
 
 
@@ -95,7 +84,7 @@ public class MovePlayer : MonoBehaviour
     }
     public void Shoot()
     {
-        canFire = false;
+        
         GameObject obj = (GameObject)Instantiate(myCannonBallPrefab, myFpPos, myFP.transform.rotation);
         obj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 300;
         

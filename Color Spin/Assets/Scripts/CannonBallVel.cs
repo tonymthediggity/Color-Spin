@@ -47,7 +47,7 @@ public class CannonBallVel : MonoBehaviour
 
       //  myCol.material.bounciness = Random.Range(2, 5);
 
-        myBody.velocity = myFirePoint.transform.forward * myVel;
+       // For RandomGen myBody.velocity = myFirePoint.transform.forward * myVel;
 
       /* if (firePoints.Length == 1)
         {

@@ -13,15 +13,19 @@ public class LevelLoadUI : MonoBehaviour
     public GameObject player;
 
     public float timer;
+    public float timeToStartScene;
+    public bool startSceneTimer;
     
     public Text levelNameText;
     public Text parText;
     public Text readyText;
     public GameObject buttonPrefab;
+    public GameObject retryButtonPrefab;
     public int finalScore;
     public GameObject gameManager;
     public bool levelStartEnable;
-    public bool levelEndEnable;
+    public bool levelEndContEnable;
+    public bool levelEndFailEnable;
     public CannonBall cannonManager;
 
     // Start is called before the first frame update
@@ -29,6 +33,9 @@ public class LevelLoadUI : MonoBehaviour
     {
         player = GameObject.Find("PlayerParent");
         levelStartEnable = true;
+        levelEndFailEnable = false;
+        startSceneTimer = true;
+        timeToStartScene = 0;
         levelManager = GameObject.Find("LevelLoadUI").GetComponent<Image>();
 
         thisScene = SceneManager.GetActiveScene();
@@ -41,17 +48,24 @@ public class LevelLoadUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (startSceneTimer == true)
+        {
+            timeToStartScene += Time.deltaTime;
+        }
 
-        
-          
 
-          if(levelStartEnable == true && cannonManager.currAmount < cannonManager.maxAmount && cannonManager.dontSpawn == false)
+        if (levelStartEnable == true && timeToStartScene < 3)
           {
               Time.timeScale = 1;
-              var tempColor = levelManager.color;
+            startSceneTimer = true;
+            var tempColor = levelManager.color;
               var tempColor1 = parText.color;
               var tempColor2 = levelNameText.color;
               var tempColor3 = readyText.color;
+              if(timeToStartScene > 4)
+            {
+                levelStartEnable = false;
+            }
 
               tempColor.a = 1f;
               tempColor1.a = 1f;
@@ -63,8 +77,10 @@ public class LevelLoadUI : MonoBehaviour
               levelNameText.color = tempColor2;
               readyText.color = tempColor3;
 
+            parText.text = "Par: " + gameManager.GetComponent<ScoreAndTimer>().par;
+
           }
-          else
+          else if (timeToStartScene >= 3)
           {
               levelStartEnable = false;
               var tempColor = levelManager.color;
@@ -76,6 +92,8 @@ public class LevelLoadUI : MonoBehaviour
               tempColor1.a = 0f;
               tempColor2.a = 0f;
               tempColor3.a = 0f;
+              startSceneTimer = false;
+              timeToStartScene = 0;
 
               levelManager.color = tempColor;
               parText.color = tempColor1;
@@ -84,12 +102,17 @@ public class LevelLoadUI : MonoBehaviour
           }
 
 
-          if(cannonManager.currAmount <= 0 && levelStartEnable == false)
+          if(cannonManager.currAmount <= 0 && levelStartEnable == false && player.GetComponent<MovePlayer>().numberOfShots < gameManager.GetComponent<ScoreAndTimer>().par  )
           {
-              levelEndEnable = true;
+              levelEndContEnable = true;
           }
 
-          if(levelEndEnable == true)
+        if (cannonManager.currAmount <= 0 && levelStartEnable == false && player.GetComponent<MovePlayer>().numberOfShots > gameManager.GetComponent<ScoreAndTimer>().par)
+        {
+            levelEndFailEnable = true;
+        }
+
+        if (levelEndContEnable == true)
           {
               var tempColor = levelManager.color;
               var tempColor1 = parText.color;
@@ -120,6 +143,38 @@ public class LevelLoadUI : MonoBehaviour
                   newButton.transform.localPosition = new Vector3(0, -127, 0);
               }
           }
+
+        if (levelEndFailEnable == true)
+        {
+            var tempColor = levelManager.color;
+            var tempColor1 = parText.color;
+            var tempColor2 = levelNameText.color;
+            var tempColor3 = readyText.color;
+
+            tempColor.a = 1f;
+            tempColor1.a = 1f;
+            tempColor2.a = 0f;
+            tempColor3.a = 1f;
+
+            levelManager.color = tempColor;
+            parText.color = tempColor1;
+            levelNameText.color = tempColor2;
+            readyText.color = tempColor3;
+            Time.timeScale = 0;
+
+            Cursor.visible = true;
+
+            finalScore = gameManager.GetComponent<ScoreAndTimer>().currScore + (gameManager.GetComponent<ScoreAndTimer>().par - player.GetComponent<MovePlayer>().numberOfShots) + Mathf.RoundToInt(timer);
+            readyText.text = "Failure";
+            parText.text = "Par: " + gameManager.GetComponent<ScoreAndTimer>().par + " " + "Shots: " + player.GetComponent<MovePlayer>().numberOfShots;
+
+            if (GameObject.Find("RetryButton(Clone)") == false)
+            {
+                GameObject newButton = Instantiate(retryButtonPrefab, transform.position, transform.rotation) as GameObject;
+                newButton.transform.SetParent(gameObject.transform);
+                newButton.transform.localPosition = new Vector3(0, -127, 0);
+            }
+        }
 
 
 

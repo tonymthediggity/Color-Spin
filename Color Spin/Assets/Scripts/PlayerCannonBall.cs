@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCannonBall : MonoBehaviour
 {
+    public Rigidbody myBody;
 
     public float despawnTimer;
     public bool despawnTimerActive;
@@ -15,22 +16,24 @@ public class PlayerCannonBall : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        myBody = GetComponent<Rigidbody>();
         myAudio = GetComponent<AudioSource>();
         despawnTimer = 0;
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
+      
+        despawnTimer += Time.deltaTime;
 
-        if (despawnTimerActive)
-        {
-            despawnTimer += Time.deltaTime;
-        }
+        
+        
         
 
-        if(despawnTimer >= 3)
+        if(Input.GetMouseButtonDown(1))
         {
             Destroy(this.gameObject);
         }
@@ -41,7 +44,7 @@ public class PlayerCannonBall : MonoBehaviour
         if (other.collider.CompareTag("CannonBall"))
         {
             Destroy(other.gameObject);
-            despawnTimerActive = true;
+            
             myAudio.Play();
 
             
