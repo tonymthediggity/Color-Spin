@@ -9,7 +9,9 @@ public class LevelStatTrack : MonoBehaviour
 {
 
     public int currLevel;
-    
+
+    public string sceneName;
+    public string currScene;
     public bool level1Complete;
     public bool level2Complete;
     public bool level3Complete;
@@ -27,6 +29,8 @@ public class LevelStatTrack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sceneName = "MenuScene";
+        currScene = SceneManager.GetActiveScene().name;
 
         currLevel = SceneManager.GetActiveScene().buildIndex;
 
@@ -69,7 +73,20 @@ public class LevelStatTrack : MonoBehaviour
 
     }
 
-    public void SavePlayer()
+  /*  void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+        if (currScene != sceneName)
+        {
+
+
+            SaveSystem.SaveLevelProgress(this);
+            Debug.Log("OnSceneLoaded: " + scene.name);
+            Debug.Log(mode);
+        }
+    }*/
+
+        public void SavePlayer()
     {
         SaveSystem.SaveLevelProgress(this);
     }
@@ -83,7 +100,7 @@ public class LevelStatTrack : MonoBehaviour
         level3Complete = data.level3Complete;
         level4Complete = data.level4Complete;
         level5Complete = data.level5Complete;
-        level6Complete = data.level6Complete;
+        level6Complete = data.level6Complete; 
 
 
     }

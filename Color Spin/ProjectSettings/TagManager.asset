@@ -17,6 +17,8 @@ TagManager:
   - ColorManager
   - LevelLoadUI
   - Tracker
+  - SaveButton
+  - LoadButton
   layers:
   - Default
   - TransparentFX
