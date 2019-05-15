@@ -19,6 +19,9 @@ TagManager:
   - Tracker
   - SaveButton
   - LoadButton
+  - ExitPortal
+  - EntryPortal
+  - Portal
   layers:
   - Default
   - TransparentFX
