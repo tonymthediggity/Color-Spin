@@ -15,21 +15,36 @@ public class MovePlayer : MonoBehaviour
     public GameObject myCannonBallPrefab;
     public int numberOfShots;
     public Text shotText;
+    public GameObject clickPos;
+    public Vector3 mousePos;
+    public Camera mainCam;
+   
+    
+
+    
     
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-        
+        Cursor.visible = true;
+        clickPos = GameObject.Find("ClickPos");
         bodyCol = GetComponentInChildren<SphereCollider>();
         bodyCol.enabled = false;
         aimLine = GetComponent<LineRenderer>();
         playerPos = GameObject.Find("PlayerPos").transform.position;
         transform.position = playerPos;
     }
+
+    
     void Update()
     {
+
+        mainCam = Camera.main;
+        
+
+
+
         playerCannonBallClone = GameObject.Find("PlayerCannonBall(Clone)");
         shotText.text = "Shots " + numberOfShots;
         myFpPos = myFP.transform.position;
@@ -46,7 +61,7 @@ public class MovePlayer : MonoBehaviour
       //  if (Input.GetMouseButton(0))
        // {
             
-            transform.Rotate(0, 0, -Input.GetAxis("Mouse X") * aimSensitivity);
+         // works   transform.Rotate(0, 0, -Input.GetAxis("Mouse X") * aimSensitivity);
             
 
             
@@ -57,8 +72,12 @@ public class MovePlayer : MonoBehaviour
        //     isAiming = false;
        // }
 
-        if (Input.GetMouseButtonDown(1) && playerCannonBallClone == null)
+        
+
+        if (Input.GetMouseButtonDown(0) && playerCannonBallClone == null)
         {
+            clickPos.transform.position = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            transform.up = clickPos.transform.position - transform.position;
             Shoot();
             numberOfShots++;
 
@@ -90,4 +109,6 @@ public class MovePlayer : MonoBehaviour
         
         
     }
+
+    
 }

@@ -46,7 +46,7 @@ public class PlayerCannonBall : MonoBehaviour
         
         
 
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(0))
         {
             Destroy(this.gameObject);
         }
