@@ -74,16 +74,21 @@ public class MovePlayer : MonoBehaviour
 
         
 
-        if (Input.GetMouseButtonDown(0) && playerCannonBallClone == null)
+        if (Input.GetMouseButton(0) /*&& playerCannonBallClone == null*/)
         {
             clickPos.transform.position = mainCam.ScreenToWorldPoint(Input.mousePosition);
             transform.up = clickPos.transform.position - transform.position;
-            Shoot();
-            numberOfShots++;
 
+            
         }
 
-        
+        if (Input.GetMouseButtonUp(0) && playerCannonBallClone == null)
+        {
+            Shoot();
+            numberOfShots++;
+        }
+
+
 
 
 
