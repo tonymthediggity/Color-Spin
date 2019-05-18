@@ -22,7 +22,7 @@ public class ScoreAndTimer : MonoBehaviour
 
        
         cannonBallScript = GameObject.Find("CannonWScript").GetComponent<CannonBall>();
-        par = Mathf.RoundToInt(cannonBallScript.maxAmount * 1.10f);
+        
         
         
     }

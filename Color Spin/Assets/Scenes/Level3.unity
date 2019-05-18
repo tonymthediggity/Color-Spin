@@ -1324,7 +1324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1406,7 +1406,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 815486986}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3e8ba643aff42d428567f83b7bec004, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff4138d7b375ba4189f490dcb14a9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  par: 0
+  par: 11
   cannonBalls: []
   scoreToGive: 0
   currScore: 0
@@ -1777,7 +1777,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995402024}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3e8ba643aff42d428567f83b7bec004, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3146,7 +3146,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885195418}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3e8ba643aff42d428567f83b7bec004, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3237,7 +3237,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887772452}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3e8ba643aff42d428567f83b7bec004, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3702,7 +3702,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101223463}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a3e8ba643aff42d428567f83b7bec004, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

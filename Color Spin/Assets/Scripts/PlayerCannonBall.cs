@@ -15,10 +15,19 @@ public class PlayerCannonBall : MonoBehaviour
     public int score;
     public AudioSource myAudio;
 
+    public float xVel;
+    public float yVel;
+    public Vector3 localVel;
+    public bool headingLeft;
+    public bool headingRight;
+    public bool headingUp;
+    public bool headingDown;
+
     public Vector3 oldVelocity;
     public Vector3 newVelocity;
     public GameObject entryPortal;
     public GameObject exitPortal;
+    public float speed = 300;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,6 +37,7 @@ public class PlayerCannonBall : MonoBehaviour
         myBody = GetComponent<Rigidbody>();
         myAudio = GetComponent<AudioSource>();
         despawnTimer = 0;
+        speed = 300;
         
         
     }
@@ -35,18 +45,68 @@ public class PlayerCannonBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        yVel = Mathf.Abs(myBody.velocity.y);
+        xVel = Mathf.Abs(myBody.velocity.x);
+        localVel = transform.InverseTransformDirection(myBody.velocity);
         despawnTimer += Time.deltaTime;
         headingX = myBody.velocity.x;
         headingY = myBody.velocity.y;
 
+        /*if(localVel.x > 0 && !headingLeft)
+        {
+            headingRight = true;
+        }
+        if (headingRight)
+        {
+            headingLeft = false;
+        }
         
+       
+        if (localVel.x < 0 && !headingRight)
+        {
+            headingLeft = true;
+        }
+        if (headingLeft)
+        {
+            headingRight = false;
+        }
+       
+
+
+       /* if (localVel.y > 0 && !headingDown)
+        {
+            headingUp = true;
+        }
+        if (headingUp)
+        {
+            headingDown = false;
+        }*/
+
+       
+
+
+       /* if (localVel.y < 0 && !headingUp)
+        {
+            headingDown = true;
+        }
+        if (headingDown)
+        {
+            headingUp = false;
+        }*/
 
         
-        
-        
 
-        if(Input.GetMouseButtonDown(0))
+
+
+
+        Vector3 v = myBody.velocity;
+        v = v.normalized;
+        v *= speed;
+        myBody.velocity = v;
+
+
+
+        if (Input.GetMouseButtonDown(0))
         {
             Destroy(this.gameObject);
         }
@@ -65,10 +125,31 @@ public class PlayerCannonBall : MonoBehaviour
         if (!other.collider.CompareTag("CannonBall"))
         {
             myAudio.Play();
-            RandomVelocityTweak();
+          /*  if(xVel != 300 && headingRight)
+            {
+                myBody.AddForce(new Vector3(1000, 0, 0));
+            }
+
+            if (xVel != 300 && headingLeft)
+            {
+                myBody.AddForce(new Vector3(-1000, 0, 0));
+            }
+
+            if (yVel != 300 && headingUp)
+            {
+                myBody.AddForce(new Vector3(0, 1000, 0));
+            }
+            if (yVel != 300 && headingDown)
+            {
+                myBody.AddForce(new Vector3(0, -1000, 0));
+            }
+            */
+
         }
 
         
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,41 +164,9 @@ public class PlayerCannonBall : MonoBehaviour
 
         
     }
+   
 
-    private void RandomVelocityTweak()
-    {
-        //TODO: Keep angular trajectory when bouncing to prevent infinite bounce loops using headingX and headingY!!!!
-        /*
-        if (headingX > 0)
-        {
-            Vector3 velocityTweak = new Vector3(Random.Range(0f, 0.5f), myBody.velocity.y, 0);
-            //add velocity tweak to velocity
-            myBody.velocity += velocityTweak;
+ 
 
-        }
-        if (headingX <0 )
-        {
-            //create random velocity tweak from 0 - 0.3f
-            Vector3 velocityTweak = new Vector3(Random.Range(0f, 0.5f), myBody.velocity.y, 0);
-            //add velocity tweak to velocity
-            myBody.velocity.x -= velocityTweak;
-        }
 
-        if (headingY > 0)
-        {
-            //create random velocity tweak from 0 - 0.3f
-            Vector3 velocityTweak = new Vector3(myBody.velocity.x, Random.Range(0f, 12), 0);
-            //add velocity tweak to velocity
-            myBody.velocity += velocityTweak;
-        }
-
-        if (headingX < 0)
-        {
-            //create random velocity tweak from 0 - 0.3f
-            Vector3 velocityTweak = new Vector3(myBody.velocity.x, Random.Range(0f, 12), 0);
-            //add velocity tweak to velocity
-            myBody.velocity -= velocityTweak;
-        }*/
-
-    }
 }

@@ -102,7 +102,7 @@ public class LevelLoadUI : MonoBehaviour
           }
 
 
-          if(cannonManager.currAmount <= 0 && levelStartEnable == false && player.GetComponent<MovePlayer>().numberOfShots < gameManager.GetComponent<ScoreAndTimer>().par  )
+          if(cannonManager.currAmount <= 0 && levelStartEnable == false && player.GetComponent<MovePlayer>().numberOfShots <= gameManager.GetComponent<ScoreAndTimer>().par  )
           {
               levelEndContEnable = true;
           }
