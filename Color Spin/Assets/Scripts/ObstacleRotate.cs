@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObstacleRotate : MonoBehaviour
 {
 
- 
+    public int rotateSpeed;
 
     // Start is called before the first frame update
     void Awake()
@@ -17,10 +17,18 @@ public class ObstacleRotate : MonoBehaviour
     void Update()
     {
         
-            transform.Rotate(30 * Time.deltaTime, 0, 0);
+            transform.Rotate(0,0,rotateSpeed * Time.deltaTime);
         
 
 
 
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (!other.gameObject.CompareTag("PlayerCannonBall"))
+        {
+            rotateSpeed = -rotateSpeed;
+        }
     }
 }

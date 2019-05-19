@@ -23,6 +23,8 @@ TagManager:
   - EntryPortal
   - Portal
   - FP
+  - Walls
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -18,6 +18,7 @@ public class MovePlayer : MonoBehaviour
     public GameObject clickPos;
     public Vector3 mousePos;
     public Camera mainCam;
+    public LevelLoadUI llScript;
    
     
 
@@ -34,6 +35,7 @@ public class MovePlayer : MonoBehaviour
         aimLine = GetComponent<LineRenderer>();
         playerPos = GameObject.Find("PlayerPos").transform.position;
         transform.position = playerPos;
+        llScript = GameObject.FindGameObjectWithTag("LevelLoadUI").GetComponent<LevelLoadUI>();
     }
 
     
@@ -82,7 +84,7 @@ public class MovePlayer : MonoBehaviour
             
         }
 
-        if (Input.GetMouseButtonUp(0) && playerCannonBallClone == null)
+        if (Input.GetMouseButtonUp(0) && playerCannonBallClone == null && llScript.levelEndContEnable == false && llScript.levelStartEnable == false)
         {
             Shoot();
             numberOfShots++;

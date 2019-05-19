@@ -1767,7 +1767,7 @@ RectTransform:
   - {fileID: 116152920}
   - {fileID: 1116484932}
   m_Father: {fileID: 1280724452}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1794,6 +1794,7 @@ MonoBehaviour:
   timer: 0
   timeToStartScene: 0
   startSceneTimer: 0
+  boss: {fileID: 0}
   levelNameText: {fileID: 958105595}
   parText: {fileID: 116152921}
   readyText: {fileID: 1116484933}
@@ -1821,7 +1822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2683,7 +2684,7 @@ RectTransform:
   m_Children:
   - {fileID: 1338348706}
   m_Father: {fileID: 1280724452}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2947,8 +2948,8 @@ RectTransform:
   - {fileID: 222202028}
   - {fileID: 685330525}
   - {fileID: 2074310935}
-  - {fileID: 1216348760}
   - {fileID: 735361326}
+  - {fileID: 1216348760}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

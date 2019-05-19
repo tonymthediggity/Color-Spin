@@ -15,6 +15,7 @@ public class LevelLoadUI : MonoBehaviour
     public float timer;
     public float timeToStartScene;
     public bool startSceneTimer;
+    public GameObject boss;
     
     public Text levelNameText;
     public Text parText;
@@ -32,6 +33,7 @@ public class LevelLoadUI : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("PlayerParent");
+        boss = GameObject.FindGameObjectWithTag("Boss");
         levelStartEnable = true;
         levelEndFailEnable = false;
         startSceneTimer = true;
@@ -102,7 +104,7 @@ public class LevelLoadUI : MonoBehaviour
           }
 
 
-          if(cannonManager.currAmount <= 0 && levelStartEnable == false && player.GetComponent<MovePlayer>().numberOfShots <= gameManager.GetComponent<ScoreAndTimer>().par  )
+          if(cannonManager.currAmount <= 0 && levelStartEnable == false && player.GetComponent<MovePlayer>().numberOfShots <= gameManager.GetComponent<ScoreAndTimer>().par && boss == null )
           {
               levelEndContEnable = true;
           }
