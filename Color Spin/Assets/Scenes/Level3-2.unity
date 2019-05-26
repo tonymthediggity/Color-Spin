@@ -1342,7 +1342,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e751c3b09051a46aa1069241854bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotDir: 1
   rotateSpeed: 65
+  moveDirLR: 0
+  moveDirUD: 0
+  moveSpeedX: 0
+  moveSpeedY: 0
+  myBody: {fileID: 0}
 --- !u!4 &769896360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8765927376480599743, guid: 27a31545bf662e2418631acb20ff065c,
@@ -2166,7 +2172,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e751c3b09051a46aa1069241854bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: -65
+  rotDir: -1
+  rotateSpeed: 65
+  moveDirLR: 0
+  moveDirUD: 0
+  moveSpeedX: 0
+  moveSpeedY: 0
+  myBody: {fileID: 0}
 --- !u!1 &1280724448
 GameObject:
   m_ObjectHideFlags: 0

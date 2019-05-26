@@ -1791,7 +1791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff4138d7b375ba4189f490dcb14a9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  par: 10
+  par: 12
   cannonBalls: []
   scoreToGive: 0
   currScore: 0

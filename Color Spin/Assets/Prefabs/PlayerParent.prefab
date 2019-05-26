@@ -59,6 +59,16 @@ MonoBehaviour:
     type: 3}
   numberOfShots: 0
   shotText: {fileID: 0}
+  clickPos: {fileID: 0}
+  mousePos: {x: 0, y: 0, z: 0}
+  mainCam: {fileID: 0}
+  llScript: {fileID: 0}
+  aimBallPrefab: {fileID: 8857125876610641122, guid: 3da3b02eb2ae30d459d61ad983ae504f,
+    type: 3}
+  oldPos: {x: 0, y: 0, z: 0}
+  timerTilMovePosAgain: 0
+  startTimer: 0
+  aimBalls: []
 --- !u!114 &7434093994128995047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +256,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &7434093995395579643
+--- !u!82 &7434093995395579633
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,7 +266,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d080bd01b5173004781ac4af29908487, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 121f4f353224f144e92826f34ac8a079, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -342,7 +352,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &7434093995395579633
+--- !u!82 &7434093995395579643
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,7 +362,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 121f4f353224f144e92826f34ac8a079, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d080bd01b5173004781ac4af29908487, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -481,11 +491,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiftSphere
       objectReference: {fileID: 0}
-    - target: {fileID: 2133992927484642877, guid: 7824f17cbf748fd48a015e618213e63d,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 2133992927161627121, guid: 7824f17cbf748fd48a015e618213e63d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -546,6 +551,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2133992927161627125, guid: 7824f17cbf748fd48a015e618213e63d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133992927484642877, guid: 7824f17cbf748fd48a015e618213e63d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2133992927484642879, guid: 7824f17cbf748fd48a015e618213e63d,
         type: 3}
       propertyPath: m_Enabled
@@ -560,11 +575,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size
       value: 4.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133992927161627125, guid: 7824f17cbf748fd48a015e618213e63d,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2133992927484642872, guid: 7824f17cbf748fd48a015e618213e63d, type: 3}

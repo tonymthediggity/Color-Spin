@@ -3297,6 +3297,12 @@ PrefabInstance:
       propertyPath: shotText
       value: 
       objectReference: {fileID: 222202030}
+    - target: {fileID: 7434093994128995045, guid: fc6feee837dab884fae72cb9d1747cbc,
+        type: 3}
+      propertyPath: aimBallPrefab
+      value: 
+      objectReference: {fileID: 8857125876610641122, guid: 3da3b02eb2ae30d459d61ad983ae504f,
+        type: 3}
     - target: {fileID: 7434093994128995044, guid: fc6feee837dab884fae72cb9d1747cbc,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -19,11 +19,17 @@ public class MovePlayer : MonoBehaviour
     public Vector3 mousePos;
     public Camera mainCam;
     public LevelLoadUI llScript;
-   
-    
+    public GameObject aimBallPrefab;
+    public Vector3 oldPos;
+    public float timerTilMovePosAgain;
+    public bool startTimer = false;
+    public GameObject[] aimBalls;
 
-    
-    
+
+
+
+
+
 
     private void Start()
     {
@@ -43,49 +49,79 @@ public class MovePlayer : MonoBehaviour
     {
 
         mainCam = Camera.main;
+
+        aimBalls = GameObject.FindGameObjectsWithTag("AimBall");
         
 
 
 
-        playerCannonBallClone = GameObject.Find("PlayerCannonBall(Clone)");
+
+
+            playerCannonBallClone = GameObject.Find("PlayerCannonBall(Clone)");
         shotText.text = "Shots " + numberOfShots;
         myFpPos = myFP.transform.position;
-      /*  if (!isAiming)
-        {
-            var v3 = Input.mousePosition;
+        /*  if (!isAiming)
+          {
+              var v3 = Input.mousePosition;
 
-            v3 = Camera.main.ScreenToWorldPoint(v3);
-            v3.z = 0;
+              v3 = Camera.main.ScreenToWorldPoint(v3);
+              v3.z = 0;
 
-            transform.position = v3;
-        }*/
+              transform.position = v3;
+          }*/
 
-      //  if (Input.GetMouseButton(0))
-       // {
-            
-         // works   transform.Rotate(0, 0, -Input.GetAxis("Mouse X") * aimSensitivity);
-            
+        //  if (Input.GetMouseButton(0))
+        // {
 
-            
+        // works   transform.Rotate(0, 0, -Input.GetAxis("Mouse X") * aimSensitivity);
 
-      //  }
-      //  else
-       // {
-       //     isAiming = false;
-       // }
 
-        
 
-        if (Input.GetMouseButton(0) /*&& playerCannonBallClone == null*/)
+
+        //  }
+        //  else
+        // {
+        //     isAiming = false;
+        // }
+
+        if (Input.GetMouseButton(0))
         {
             clickPos.transform.position = mainCam.ScreenToWorldPoint(Input.mousePosition);
             transform.up = clickPos.transform.position - transform.position;
+            oldPos = transform.position;
+            if (aimBalls.Length ==0)
+            {
+                GameObject aimObj = (GameObject)Instantiate(aimBallPrefab, myFpPos, myFP.transform.rotation);
+                aimObj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 300;
+            }
+            if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0 && aimBalls.Length >=1)
+            {
+                Destroy(aimBalls[0]);
+            }
 
             
         }
 
+        if (Input.GetMouseButton(0) /*&& playerCannonBallClone == null*/)
+        {
+            
+
+            /*if (!GameObject.Find("AimBall(Clone)"))
+            {
+                GameObject aimObj = (GameObject)Instantiate(aimBallPrefab, myFpPos, myFP.transform.rotation);
+                aimObj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 300;
+            }*/
+           
+
+
+
+
+        }
+
         if (Input.GetMouseButtonUp(0) && playerCannonBallClone == null && llScript.levelEndContEnable == false && llScript.levelStartEnable == false)
         {
+            
+            transform.position = oldPos;
             Shoot();
             numberOfShots++;
         }
@@ -96,7 +132,7 @@ public class MovePlayer : MonoBehaviour
 
 
         Vector3 forward = myFP.transform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(myFP.transform.position, forward * 100, Color.red );
+        //Debug.DrawRay(myFP.transform.position, forward * 100, Color.red );
 
         
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class AimLine : MonoBehaviour
 {
 
+   
     public LineRenderer myLine;
     public GameObject myFP;
     public GameObject myEP;
@@ -28,6 +29,13 @@ public class AimLine : MonoBehaviour
         positions[1] = myEP.transform.position;
         myLine.SetPositions(positions);
         myLine.alignment = LineAlignment.TransformZ;
+
+       /* RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.up), out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.up) * hit.distance, Color.yellow);
+            Debug.Log("Hit " + hit.collider.name);
+        }*/
         
 
     }

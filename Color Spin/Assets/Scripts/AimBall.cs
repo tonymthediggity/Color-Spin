@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCannonBall : MonoBehaviour
+public class AimBall : MonoBehaviour
 {
     public Rigidbody myBody;
     public float headingX;
     public float headingY;
+
     public int bounceCount = 0;
 
     public float despawnTimer;
@@ -39,8 +40,9 @@ public class PlayerCannonBall : MonoBehaviour
         myAudio = GetComponent<AudioSource>();
         despawnTimer = 0;
         speed = 300;
-        
-        
+
+
+
     }
 
     // Update is called once per frame
@@ -53,55 +55,56 @@ public class PlayerCannonBall : MonoBehaviour
         headingX = myBody.velocity.x;
         headingY = myBody.velocity.y;
 
-        if(bounceCount >= 7)
-        {
-            Destroy(this.gameObject);
-        }
-
-        /*if(localVel.x > 0 && !headingLeft)
-        {
-            headingRight = true;
-        }
-        if (headingRight)
-        {
-            headingLeft = false;
-        }
-        
-       
-        if (localVel.x < 0 && !headingRight)
-        {
-            headingLeft = true;
-        }
-        if (headingLeft)
-        {
-            headingRight = false;
-        }
-       
-
-
-       /* if (localVel.y > 0 && !headingDown)
-        {
-            headingUp = true;
-        }
-        if (headingUp)
-        {
-            headingDown = false;
-        }*/
-
-       
-
-
-       /* if (localVel.y < 0 && !headingUp)
-        {
-            headingDown = true;
-        }
-        if (headingDown)
-        {
-            headingUp = false;
-        }*/
-
         
 
+            /*if(localVel.x > 0 && !headingLeft)
+            {
+                headingRight = true;
+            }
+            if (headingRight)
+            {
+                headingLeft = false;
+            }
+
+
+            if (localVel.x < 0 && !headingRight)
+            {
+                headingLeft = true;
+            }
+            if (headingLeft)
+            {
+                headingRight = false;
+            }
+
+
+
+           /* if (localVel.y > 0 && !headingDown)
+            {
+                headingUp = true;
+            }
+            if (headingUp)
+            {
+                headingDown = false;
+            }*/
+
+
+
+
+            /* if (localVel.y < 0 && !headingUp)
+             {
+                 headingDown = true;
+             }
+             if (headingDown)
+             {
+                 headingUp = false;
+             }*/
+
+
+            if (bounceCount > 7)
+        {
+            myBody.velocity = new Vector3(0, 0, 0);
+            
+        }
 
 
 
@@ -112,7 +115,8 @@ public class PlayerCannonBall : MonoBehaviour
 
 
 
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonUp(0))
         {
             Destroy(this.gameObject);
         }
@@ -121,42 +125,10 @@ public class PlayerCannonBall : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
 
+        bounceCount++;
         
-        if (other.collider.CompareTag("CannonBall"))
-        {
-            Destroy(other.gameObject);
-            
-            myAudio.Play();
 
-            
-        }
-        if (!other.collider.CompareTag("CannonBall"))
-        {
-            bounceCount++;
-            myAudio.Play();
-          /*  if(xVel != 300 && headingRight)
-            {
-                myBody.AddForce(new Vector3(1000, 0, 0));
-            }
 
-            if (xVel != 300 && headingLeft)
-            {
-                myBody.AddForce(new Vector3(-1000, 0, 0));
-            }
-
-            if (yVel != 300 && headingUp)
-            {
-                myBody.AddForce(new Vector3(0, 1000, 0));
-            }
-            if (yVel != 300 && headingDown)
-            {
-                myBody.AddForce(new Vector3(0, -1000, 0));
-            }
-            */
-
-        }
-
-        
 
 
     }
@@ -171,11 +143,8 @@ public class PlayerCannonBall : MonoBehaviour
             myBody.velocity = newVelocity;
         }
 
-        
-    }
-   
 
- 
+    }
 
 
 }

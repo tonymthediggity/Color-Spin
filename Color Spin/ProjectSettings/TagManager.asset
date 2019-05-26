@@ -25,6 +25,7 @@ TagManager:
   - FP
   - Walls
   - Boss
+  - AimBall
   layers:
   - Default
   - TransparentFX
