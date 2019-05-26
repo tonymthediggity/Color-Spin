@@ -25,6 +25,8 @@ public class MovePlayer : MonoBehaviour
     public bool startTimer = false;
     public GameObject[] aimBalls;
 
+    public bool rayHit = false;
+
 
 
 
@@ -89,17 +91,51 @@ public class MovePlayer : MonoBehaviour
             clickPos.transform.position = mainCam.ScreenToWorldPoint(Input.mousePosition);
             transform.up = clickPos.transform.position - transform.position;
             oldPos = transform.position;
-            if (aimBalls.Length ==0)
-            {
-                GameObject aimObj = (GameObject)Instantiate(aimBallPrefab, myFpPos, myFP.transform.rotation);
-                aimObj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 300;
-            }
-            if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0 && aimBalls.Length >=1)
-            {
-                Destroy(aimBalls[0]);
-            }
+            Transform refObject;
 
+            RaycastHit hit2;
             
+            Debug.DrawRay(transform.position, transform.up * 100f, Color.green);
+
+            if(Physics.Raycast(transform.position, transform.up, out hit2, 100f))
+            {
+                
+                
+                Vector3 newDir = Vector3.Reflect(transform.up, hit2.normal);
+                Debug.DrawRay(hit2.point, newDir * 100f, Color.green);
+                RaycastHit hit3;
+                
+
+                if (Physics.Raycast(hit2.point, transform.up, out hit3, 100f ))
+                {
+                    Vector3 newDir1 = Vector3.Reflect(transform.up, hit3.normal);
+                    Debug.DrawRay(hit3.point, newDir1 * 100f, Color.green);
+                    
+                }
+            }
+            
+
+
+
+
+
+
+
+            /* if (Physics.Raycast(ray, out hit))
+             {
+                 //currentMovementDirection = Vector3.Reflect(currentMovementDirection, hit.normal);
+             }
+             /*  if (aimBalls.Length ==0)
+               {
+                   GameObject aimObj = (GameObject)Instantiate(aimBallPrefab, myFpPos, myFP.transform.rotation);
+                   aimObj.GetComponent<Rigidbody>().velocity = myFP.transform.forward * 300;
+               }
+               if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0 && aimBalls.Length >=1)
+               {
+                   Destroy(aimBalls[0]);
+               }*/
+
+
         }
 
         if (Input.GetMouseButton(0) /*&& playerCannonBallClone == null*/)
