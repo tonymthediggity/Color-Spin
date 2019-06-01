@@ -165,6 +165,7 @@ public class PlayerCannonBall : MonoBehaviour
     {
         if (other.CompareTag("EntryPortal"))
         {
+            bounceCount = 0;
             oldVelocity = myBody.velocity;
             transform.position = exitPortal.transform.position;
             newVelocity = oldVelocity;

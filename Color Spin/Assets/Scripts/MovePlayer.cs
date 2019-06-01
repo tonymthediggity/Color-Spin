@@ -9,7 +9,8 @@ public class MovePlayer : MonoBehaviour
     public SphereCollider bodyCol;
     public GameObject myFP;
     public Vector3 myFpPos;
-    public LineRenderer aimLine;
+    public LineRenderer theLine;
+    public int lineCount = 0;
     public GameObject playerCannonBallClone;
     public int aimSensitivity;
     public GameObject myCannonBallPrefab;
@@ -26,6 +27,8 @@ public class MovePlayer : MonoBehaviour
     public GameObject[] aimBalls;
 
     public bool rayHit = false;
+    public Vector3 newDir;
+    public GameObject newDirObj;
 
 
 
@@ -40,7 +43,7 @@ public class MovePlayer : MonoBehaviour
         clickPos = GameObject.Find("ClickPos");
         bodyCol = GetComponentInChildren<SphereCollider>();
         bodyCol.enabled = false;
-        aimLine = GetComponent<LineRenderer>();
+        theLine = GetComponent<LineRenderer>();
         playerPos = GameObject.Find("PlayerPos").transform.position;
         transform.position = playerPos;
         llScript = GameObject.FindGameObjectWithTag("LevelLoadUI").GetComponent<LevelLoadUI>();
@@ -49,10 +52,12 @@ public class MovePlayer : MonoBehaviour
     
     void Update()
     {
+        
 
         mainCam = Camera.main;
 
         aimBalls = GameObject.FindGameObjectsWithTag("AimBall");
+        
         
 
 
@@ -86,33 +91,74 @@ public class MovePlayer : MonoBehaviour
         //     isAiming = false;
         // }
 
-        if (Input.GetMouseButton(0))
+        
+
+            if (Input.GetMouseButton(0))
         {
-            clickPos.transform.position = mainCam.ScreenToWorldPoint(Input.mousePosition);
-            transform.up = clickPos.transform.position - transform.position;
-            oldPos = transform.position;
-            Transform refObject;
+            Vector3 cPos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            clickPos.transform.position = new Vector3(cPos.x, cPos.y, 0);
 
-            RaycastHit hit2;
+
+
+
             
+
+             transform.up = clickPos.transform.position - transform.position;
+
+
+
+
+
+
+            /*
+            RaycastHit hit;
+            
+            //initial ray
             Debug.DrawRay(transform.position, transform.up * 100f, Color.green);
-
-            if(Physics.Raycast(transform.position, transform.up, out hit2, 100f))
+            //initial ray
+            if(Physics.Raycast(transform.position, transform.up, out hit, 100f))
             {
+                theLine.enabled = true;
+                theLine.SetPosition(0, transform.position);
+                theLine.SetPosition(1, hit.point);
+                theLine.SetPosition(2, hit.point);
+                newDir = Vector3.Reflect(transform.up, hit.normal);
                 
                 
-                Vector3 newDir = Vector3.Reflect(transform.up, hit2.normal);
-                Debug.DrawRay(hit2.point, newDir * 100f, Color.green);
-                RaycastHit hit3;
-                
+                Debug.DrawRay(hit.point, newDir * 100f, Color.blue); //second ray
 
-                if (Physics.Raycast(hit2.point, transform.up, out hit3, 100f ))
+
+
+
+                if (Physics.Raycast(hit.point, newDir, out hit, 100f))
                 {
-                    Vector3 newDir1 = Vector3.Reflect(transform.up, hit3.normal);
-                    Debug.DrawRay(hit3.point, newDir1 * 100f, Color.green);
-                    
+                    theLine.positionCount = 4;
+                    theLine.SetPosition(3, hit.point);
+                    newDir = Vector3.Reflect(hit.point, transform.up);
+                    Debug.DrawRay(hit.point, newDir * 100f, Color.red);
+                   
+
+
+
+
+                    if (Physics.Raycast(hit.point, newDir, out hit, 100f))
+                    {
+                        theLine.positionCount = 5;
+                        theLine.SetPosition(4, hit.point);
+                        newDir = Vector3.Reflect(hit.point, transform.up);
+                        Debug.DrawRay(hit.point, newDir * 100f, Color.magenta);
+
+                        
+
+                    }
                 }
-            }
+
+
+
+            }*/
+            
+
+            
             
 
 
@@ -157,12 +203,12 @@ public class MovePlayer : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && playerCannonBallClone == null && llScript.levelEndContEnable == false && llScript.levelStartEnable == false)
         {
             
-            transform.position = oldPos;
+            
             Shoot();
             numberOfShots++;
         }
 
-
+        
 
 
 
@@ -188,6 +234,8 @@ public class MovePlayer : MonoBehaviour
         
         
     }
+
+  
 
     
 }
